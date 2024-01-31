@@ -1,0 +1,51 @@
+<!DOCtYPE html>
+<html>
+    <head>
+        <title>
+            url shortner
+        </title>
+    </head>
+    <body>
+        <h1>this is from view </h1>
+        <% if (locals.id) { %>
+            <p> short url is :http://localhost:8000/url/<%= locals.id%></p>
+        <% } %>
+        <div>
+            <form method='POST' action="/url">
+                <label>enter your URL</label>
+                <input type="text" name="url" placeholder="https://example.com">
+                <button type="submit">GENERATE</button>
+            </form>
+        </div>
+        <% if (locals.urls) { %>
+            <div >
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Sr.NO</th>
+                            <th>ShortID</th>
+                            <th>Redirect</th>
+                            <th>Click</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                            <% urls.forEach((element,index) => {%>
+                                <tr>
+                                <td><%=index +1%></td>
+                                <td><%= element.shortId%></td>
+                                <td><%=element.redirectURL %></td>
+                                <td><%=element.visitHistory.length%></td>
+                            </tr>
+                             <%});%>    
+                    </tbody>
+                </table>
+            </div>
+         
+        <% } %>
+        
+        
+        
+        
+    </body>
+</html>
